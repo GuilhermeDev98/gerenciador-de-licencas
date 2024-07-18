@@ -1,5 +1,5 @@
 
-export default class Cpf {
+export default class CPF {
 	private value: string;
 	private CPF_LENGTH = 11;
 	private FACTOR_FIRST_DIGIT = 10;
