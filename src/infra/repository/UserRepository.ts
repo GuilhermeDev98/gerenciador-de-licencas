@@ -7,10 +7,9 @@ export default class UserRepository implements IUserRepository {
   constructor() {
     this.users = [];
   }
-  
 
   async getUserById(userId: string): Promise<User | void> {
-    return this.users.find((user: User) => user.id === userId);
+    return this.users.find((user: User) => user.userId === userId);
   }
 
   async save(user: User): Promise<void> {

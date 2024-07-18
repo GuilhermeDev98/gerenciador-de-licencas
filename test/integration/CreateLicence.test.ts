@@ -21,7 +21,7 @@ test("deve criar uma licença de sofware", async () => {
     userRepository.save(owner)
 
     const licenceSoftware = {
-        userId: owner.id,
+        userId: owner.userId,
         softwareId: software.softwareId,
         expirationDate: null
     }

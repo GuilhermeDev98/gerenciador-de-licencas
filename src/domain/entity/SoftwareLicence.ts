@@ -4,25 +4,25 @@ import User from "./User";
 import crypto from "crypto";
 
 export default class SoftwareLicence {
+  private licenceStatus: LicenceStatus;
   private licenceCode: LicenceCode;
 
   constructor(
     readonly softwarelicenceId: string,
     licenceCode: string,
-    software: Software,
+    readonly software: Software,
     readonly ownerId: string,
     readonly createdAt: Date,
     readonly updatedAt: Date,
-    readonly statusLicence: LicenceStatus
   ) {
     this.licenceCode = new LicenceCode(licenceCode);
+    this.licenceStatus = LicenceStatus.PENDENTE_PAGAMENTO
   }
 
   static create(
     licenceCode: LicenceCode,
     software: Software,
     userId: string,
-    licenceStatus: LicenceStatus
   ) {
     const softwarelicence = new SoftwareLicence(
       crypto.randomUUID(),
@@ -30,15 +30,19 @@ export default class SoftwareLicence {
       software,
       userId,
       new Date(),
-      new Date(),
-      licenceStatus
+      new Date()
     );
 
     return softwarelicence;
   }
 
   getLicence() {
+    if(this.licenceStatus !== LicenceStatus.ATIVA) throw new Error("License is not active !")
     return this.licenceCode.getValue();
+  }
+
+  activeLicence(){
+    this.licenceStatus = LicenceStatus.ATIVA
   }
 }
 

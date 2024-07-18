@@ -5,7 +5,7 @@ import crypto from 'crypto'
 
 export default class User{
     constructor(
-        readonly id: string,
+        readonly userId: string,
         readonly name: string,
         readonly cpf: string,
         readonly email: string,

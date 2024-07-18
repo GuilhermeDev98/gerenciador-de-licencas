@@ -19,7 +19,7 @@ export default class CreateSoftwareLicence implements UseCase {
     const user = await this.usuarioRepository.getUserById(input.userId);
     if (!software) throw new Error("Software Not Found !");
     if (!user) throw new Error("User Not Found");
-    const softwareLicence = SoftwareLicence.create(licenceCode, software, user.id, LicenceStatus.PENDENTE_PAGAMENTO);
+    const softwareLicence = SoftwareLicence.create(licenceCode, software, user.userId);
 
     return {
         softwarelicenId: softwareLicence.softwarelicenceId,
